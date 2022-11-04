@@ -27,6 +27,7 @@ pipeline {
                     cd ..
                 """)
                 }
+        }
         stage('build and push webui image') {
             steps {
                 sh(script: """
