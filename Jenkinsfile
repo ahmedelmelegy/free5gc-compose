@@ -14,9 +14,9 @@ pipeline {
         stage('docker build') {
             steps {
                 sh(script: """
-                    make base
+                    sudo make base
                     cd nf_udr
-                    docker images
+                    sudo docker images
                 """)
                 }
         }
