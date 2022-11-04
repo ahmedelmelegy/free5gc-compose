@@ -1,8 +1,8 @@
 pipeline {
    agent any
-//    environment {
-//     DOCKERHUB_CREDENTIALS = credentials('docker_hub')
-//    }
+   environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub_credentials')
+   }
 
    stages {
       stage('Verify Branch') {
@@ -14,9 +14,12 @@ pipeline {
         stage('docker build') {
             steps {
                 sh(script: """
+                    docker images
                     make base
                     cd nf_udr
-                    docker images
+                    docker build -t gradproj/udr .
+                    docker push gradproj/udr .
+                    cd ..
                 """)
                 }
         }
