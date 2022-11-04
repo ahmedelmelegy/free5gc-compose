@@ -18,7 +18,7 @@ pipeline {
                     make base
                     cd nf_udr
                     docker build -t gradproj/udr .
-                    docker push gradproj/udr .
+                    docker push gradproj/udr
                     cd ..
                 """)
                 }
