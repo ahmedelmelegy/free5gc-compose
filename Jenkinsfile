@@ -5,12 +5,17 @@ pipeline {
    }
 
    stages {
-      stage('Verify Branch') {
-         steps {
-            echo "$GIT_BRANCH"
-         }
-      }
+        stage('Verify Branch') {
+            steps {
+                echo "$GIT_BRANCH"
+            }
+        }
+        stage('Login') {
 
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
         stage('docker build') {
             steps {
                 sh(script: """
